@@ -5,7 +5,7 @@ import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
-const PressButton= ({text, theme}) => {
+const PressButton= ({text, theme, onPress}) => {
 
 const buttonTheme = [styles.number]
 const textTheme = [styles.text]
@@ -20,7 +20,7 @@ else if (theme === "clear"){
   textTheme.push(styles.clearText)
 }
   return(
-    <TouchableOpacity 
+    <TouchableOpacity  onPress={onPress}
     style={buttonTheme}
     >
       <Text style={textTheme}>{text}</Text>
