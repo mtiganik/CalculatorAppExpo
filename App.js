@@ -3,13 +3,40 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import PressButton from "./components/PressButton";
 import Row from "./components/Row";
 // import calculator, { initialState } from "./util/calculatorOld";
-import Calculate from "./util/calculator";
+// import Calculate from "./util/calculator";
 
 
 const initialVals = {
   currString: "123",
   result: 1
 }
+
+
+const Calculate = (currentState, addedChar) => {
+  if(addedChar === "C") return ["", ""]
+  if(addedChar === "d") alert("TODO")
+  if(addedChar === "posNeg") alert("TODO")
+  if(addedChar === "%") alert("TODO")
+  currentState = currentState + addedChar
+  if(!isNaN(parseFloat(addedChar))){
+    var calcRes = ""
+    try {
+      // Attempt to evaluate the input as a mathematical expression
+      const calculatedResult = eval(currentState);
+      console.log(calculatedResult)
+      // Check if the result is a finite number
+      if (Number.isFinite(calculatedResult)) {
+        return [currentState, calculatedResult];
+      } 
+    } catch (error) {
+      console.log(error)
+      //setResult(""); // If there's an error in evaluation, set result to empty string
+    }
+    return [currentState,calcRes]
+  } 
+  return [currentState + addedChar, parseFloat(addedChar) +1]
+}
+
 
 export default function App() {
   const [currentVal, setCurrentVal] = React.useState(initialVals)
